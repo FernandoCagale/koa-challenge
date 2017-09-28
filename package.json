@@ -15,7 +15,8 @@
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^3.1.0",
-    "koa-router": "^7.2.1"
+    "koa-router": "^7.2.1",
+    "mongoose": "^4.11.13"
   },
   "devDependencies": {
     "semistandard": "^11.0.0"
