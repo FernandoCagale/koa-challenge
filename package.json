@@ -1,0 +1,23 @@
+{
+  "name": "challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "linter": "semistandard",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fernando-cagale <fernando.b.cagale@gmail.com> (https://github.com/FernandoCagale)",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.2.1"
+  },
+  "devDependencies": {
+    "semistandard": "^11.0.0"
+  }
+}
