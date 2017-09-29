@@ -1,6 +1,12 @@
 # koa-challenge
 
+[![Build Status][travis-badge]][travis-url]
+
 [![js-semistandard-style](https://cdn.rawgit.com/flet/semistandard/master/badge.svg)](https://github.com/Flet/semistandard)
+
+[travis-badge]: https://travis-ci.org/FernandoCagale/koa-challenge.svg?branch=master
+[travis-url]: https://travis-ci.org/FernandoCagale/koa-challenge
+
 
 ```sh
 $ nvm use 8.6.0
