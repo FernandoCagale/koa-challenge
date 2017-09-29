@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+[ -z "$DEBUG" ] || set -x
+
+export NODE_ENV="test"
+
+echo "===> Running linter..."
+
+./node_modules/semistandard/bin/cmd.js
+
+echo "===> Running tests..."
+
+./node_modules/.bin/jest --forceExit
