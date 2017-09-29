@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const bluebird = require('bluebird');
 
 const uri = process.env.URI || 'mongodb://localhost:27017/challenge';
 
 module.exports = function () {
+  mongoose.Promise = bluebird;
   mongoose.connect(uri, { useMongoClient: true });
 
   mongoose.connection.on('connected', function () {

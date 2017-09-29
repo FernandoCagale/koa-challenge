@@ -8,6 +8,12 @@ $ nvm use 8.6.0
 $ npm install
 ```
 
+`Starting MongoDB server`
+
+```sh
+$ docker run --name mongo -d -p 27017:27017 mongo
+```
+
 ```sh
 $ npm start
 ```

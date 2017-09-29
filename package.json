@@ -11,6 +11,8 @@
   "author": "fernando-cagale <fernando.b.cagale@gmail.com> (https://github.com/FernandoCagale)",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "boom": "^6.0.0",
     "dotenv": "^4.0.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
