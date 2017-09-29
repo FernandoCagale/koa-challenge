@@ -23,7 +23,7 @@ app.use((ctx, next) => {
   return next();
 });
 
-app.use(task.routes());
+app.use(task.routes()).use(task.allowedMethods());
 
 const server = app.listen(process.env.PORT || 3000).on('error', err => {
   console.error(err);

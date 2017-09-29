@@ -14,9 +14,11 @@
     "bluebird": "^3.5.0",
     "boom": "^6.0.0",
     "dotenv": "^4.0.0",
+    "graphql": "^0.11.6",
     "kcors": "^2.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-graphql": "^0.7.3",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
     "mongoose": "^4.11.13"

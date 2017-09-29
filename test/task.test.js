@@ -65,6 +65,53 @@ describe('Tasks', () => {
     });
   });
 
+  describe('graphql', () => {
+    test('all fields Task', async () => {
+      const response = await request(server).get(`/v1/graphql?query={task(id:"${_id}"){id,type,description}}`);
+      expect(response.status).toEqual(200);
+      expect(response.type).toEqual('application/json');
+      expect(response.body.data.task.description).toEqual('database');
+      expect(response.body.data.task.type).toEqual('dba');
+      expect(response.body.data.task.id).toEqual(_id);
+    });
+
+    test('fields id Task', async () => {
+      const response = await request(server).get(`/v1/graphql?query={task(id:"${_id}"){id}}`);
+      expect(response.status).toEqual(200);
+      expect(response.type).toEqual('application/json');
+      expect(response.body.data.task.id).toEqual(_id);
+      expect(response.body.data.task.description).toBeUndefined();
+      expect(response.body.data.task.type).toBeUndefined();
+    });
+
+    test('fields id, type Task', async () => {
+      const response = await request(server).get(`/v1/graphql?query={task(id:"${_id}"){id,type}}`);
+      expect(response.status).toEqual(200);
+      expect(response.type).toEqual('application/json');
+      expect(response.body.data.task.id).toEqual(_id);
+      expect(response.body.data.task.type).toEqual('dba');
+      expect(response.body.data.task.description).toBeUndefined();
+    });
+
+    test('fields id, description Task', async () => {
+      const response = await request(server).get(`/v1/graphql?query={task(id:"${_id}"){id,description}}`);
+      expect(response.status).toEqual(200);
+      expect(response.type).toEqual('application/json');
+      expect(response.body.data.task.id).toEqual(_id);
+      expect(response.body.data.task.description).toEqual('database');
+      expect(response.body.data.task.type).toBeUndefined();
+    });
+
+    test('fields type, description Task', async () => {
+      const response = await request(server).get(`/v1/graphql?query={task(id:"${_id}"){type,description}}`);
+      expect(response.status).toEqual(200);
+      expect(response.type).toEqual('application/json');
+      expect(response.body.data.task.description).toEqual('database');
+      expect(response.body.data.task.type).toEqual('dba');
+      expect(response.body.data.task.id).toBeUndefined();
+    });
+  });
+
   describe('routes: DELETE id', () => {
     test('delete id Task', async () => {
       const response = await request(server).delete(`/v1/tasks/${_id}`);
