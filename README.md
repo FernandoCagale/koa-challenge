@@ -1,5 +1,7 @@
 # koa-challenge
 
+[![js-semistandard-style](https://cdn.rawgit.com/flet/semistandard/master/badge.svg)](https://github.com/Flet/semistandard)
+
 ```sh
 $ nvm use 8.6.0
 ```
@@ -16,6 +18,10 @@ $ docker run --name mongo -d -p 27017:27017 mongo
 
 ```sh
 $ npm start
+```
+
+```sh
+$ npm test
 ```
 
 `Docker`
