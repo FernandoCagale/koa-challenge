@@ -1,17 +1,21 @@
 require('dotenv').load({silent: true});
 
-require('./core/db')();
-
 const Koa = require('koa');
 const Boom = require('boom');
 const bodyParser = require('koa-bodyparser');
+const cors = require('kcors');
 const logger = require('koa-logger');
+
+require('./core/db')();
 
 const task = require('./api/task');
 
 const app = new Koa();
 
-app.use(logger());
+if (process.env.NODE_ENV !== 'test') {
+  app.use(logger());
+}
+app.use(cors());
 app.use(bodyParser());
 
 app.use((ctx, next) => {
@@ -21,6 +25,8 @@ app.use((ctx, next) => {
 
 app.use(task.routes());
 
-app.listen(process.env.PORT || 3000);
+const server = app.listen(process.env.PORT || 3000).on('error', err => {
+  console.error(err);
+});
 
-module.exports = app;
+module.exports = server;

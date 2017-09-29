@@ -5,13 +5,15 @@ const lib = require('../../lib/wrap');
 const router = Router();
 
 router.get('/v1/tasks', lib.wrap(async () => {
-  await taskModel.find({});
+  const tasks = await taskModel.find({});
+  return tasks || [];
 })).get('/v1/tasks/:id', lib.wrap(async ({ boom, params: { id } }) => {
   const task = await taskModel.findOne({_id: id});
   if (!task) return boom.notFound(`Task not found ${id}`);
   return task;
 })).post('/v1/tasks', lib.wrap(async ({ request: { body } }) => {
-  await taskModel.create(body);
+  const task = await taskModel.create(body);
+  return task;
 })).put('/v1/tasks/:id', lib.wrap(async ({ boom, params: { id }, request: { body } }) => {
   const task = await taskModel.findOneAndUpdate({_id: id}, body, { new: true });
   if (!task) return boom.notFound(`Task not found ${id}`);
@@ -20,6 +22,7 @@ router.get('/v1/tasks', lib.wrap(async () => {
   const task = await taskModel.findOne({_id: id});
   if (!task) return boom.notFound(`Task not found ${id}`);
   await taskModel.remove({_id: id});
+  return {ok: true};
 }));
 
 module.exports = router;

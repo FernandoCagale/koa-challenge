@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bluebird = require('bluebird');
 
-const uri = process.env.URI || 'mongodb://localhost:27017/challenge';
+const uri = process.env.URI || `mongodb://localhost:27017/${getName()}`;
 
 module.exports = function () {
   mongoose.Promise = bluebird;
@@ -26,3 +26,7 @@ module.exports = function () {
     });
   });
 };
+
+function getName () {
+  return process.env.NODE_ENV === 'test' ? 'challenge-test' : 'challenge';
+}
