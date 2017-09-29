@@ -15,14 +15,9 @@ let schema = new graphql.GraphQLSchema({
     name: 'Query',
     fields: {
       task: {
-        type: taskType,
-        args: {
-          id: {
-            type: graphql.GraphQLString
-          }
-        },
-        resolve: async (obj, args) => {
-          const t = await task.findOne({_id: args.id});
+        type: new graphql.GraphQLList(taskType),
+        resolve: async () => {
+          const t = await task.find({});
           return t;
         }
       }
