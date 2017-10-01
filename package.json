@@ -15,6 +15,7 @@
     "boom": "^6.0.0",
     "dotenv": "^4.0.0",
     "graphql": "^0.11.6",
+    "jsonwebtoken": "^8.0.1",
     "kcors": "^2.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",

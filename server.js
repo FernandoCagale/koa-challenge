@@ -9,6 +9,7 @@ const logger = require('koa-logger');
 require('./core/db')();
 
 const task = require('./api/task');
+const login = require('./api/login');
 
 const app = new Koa();
 
@@ -24,6 +25,7 @@ app.use((ctx, next) => {
 });
 
 app.use(task.routes()).use(task.allowedMethods());
+app.use(login.routes());
 
 const server = app.listen(process.env.PORT || 3000).on('error', err => {
   console.error(err);
