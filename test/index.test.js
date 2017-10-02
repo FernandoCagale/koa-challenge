@@ -10,8 +10,33 @@ afterAll(() => {
 });
 
 beforeAll(() => {
-  token = jwt.sign({ role: 'admin' }, 'secret')
-})
+  token = jwt.sign({ role: 'admin' }, 'secret');
+});
+
+describe('Login', () => {
+  describe('routes: POST', () => {
+    test('login Successfully', async () => {
+      const response = await request(server)
+        .post('/v1/login')
+        .send({user: 'koa', password: 'password'});
+
+      expect(response.status).toEqual(200);
+      expect(response.type).toEqual('application/json');
+      expect(response.body.message).toEqual('Successfully logged in!');
+      expect(response.body.token).not.toBeUndefined();
+    });
+
+    test('login invalid', async () => {
+      const response = await request(server)
+        .post('/v1/login')
+        .send({user: 'koa', password: 'invalid'});
+
+      expect(response.status).toEqual(401);
+      expect(response.type).toEqual('application/json');
+      expect(response.body.message).toEqual('Authentication failed');
+    });
+  });
+});
 
 describe('Tasks', () => {
   describe('routes: POST', () => {
@@ -34,7 +59,7 @@ describe('Tasks', () => {
         .send({description: 'web', type: 'development'});
 
       expect(response.status).toEqual(401);
-    });    
+    });
   });
 
   describe('routes: GET all', () => {
@@ -55,7 +80,7 @@ describe('Tasks', () => {
         .get('/v1/tasks');
 
       expect(response.status).toEqual(401);
-    });    
+    });
   });
 
   describe('routes: PUT id', () => {
@@ -77,7 +102,7 @@ describe('Tasks', () => {
         .send({description: 'database', type: 'dba'});
 
       expect(response.status).toEqual(401);
-    });     
+    });
 
     test('update id not found', async () => {
       const response = await request(server)
@@ -138,7 +163,7 @@ describe('Tasks', () => {
       expect(response.body.data.task[0].id).toEqual(_id);
       expect(response.body.data.task[0].description).toEqual('database');
       expect(response.body.data.task[0].type).toBeUndefined();
-    }); 
+    });
 
     test('fields type, description Task', async () => {
       const response = await request(server)
